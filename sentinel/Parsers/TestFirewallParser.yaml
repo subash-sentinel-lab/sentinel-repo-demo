@@ -1,0 +1,16 @@
+id: TestFirewallParser
+name: TestFirewallParser
+kind: Parser
+version: 1.0.0
+contentSchemaVersion: 1.0.0
+description: Test firewall parser
+
+parser:
+  query: |
+    let TestFirewallParser = (tableName:string) {
+        table(tableName)
+        | extend SrcIP = tostring(SourceIP)
+        | extend DstIP = tostring(DestinationIP)
+        | project TimeGenerated, SrcIP, DstIP
+    };
+    TestFirewallParser
